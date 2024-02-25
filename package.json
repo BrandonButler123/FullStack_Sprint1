@@ -1,0 +1,19 @@
+{
+  "name": "fullstack_sprint1",
+  "version": "1.0.0",
+  "description": "Build CLI for Full Stack JavaScript app, utilizing node.js to manage directory structure, configuration, and token creation for confirming new user accounts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrandonButler123/FullStack_Sprint1.git"
+  },
+  "author": "Brandon Butler, Zackery Walsh, William Oldford, Cameron Coles",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BrandonButler123/FullStack_Sprint1/issues"
+  },
+  "homepage": "https://github.com/BrandonButler123/FullStack_Sprint1#readme"
+}
