@@ -14,7 +14,7 @@ switch (myArgs[0]) {
   case "init":
   case "i":
     if (DEBUG) console.log(myArgs[0], " - initialize the app.");
-    initializeApp();
+    // initializeApp();
     break;
   case "config":
   case "c":
