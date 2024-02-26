@@ -4,7 +4,7 @@ const fs = require("fs");
 
 const { initializeApp } = require("./init.js");
 const { configApp } = require("./config.js");
-// const { tokenApp } = require("./token.js");
+const { tokenApp } = require("./token.js");
 
 const myArgs = process.argv.slice(2);
 
@@ -14,7 +14,7 @@ switch (myArgs[0]) {
   case "init":
   case "i":
     if (DEBUG) console.log(myArgs[0], " - initialize the app.");
-    // initializeApp();
+    initializeApp();
     break;
   case "config":
   case "c":
@@ -24,7 +24,7 @@ switch (myArgs[0]) {
   case "token":
   case "t":
     if (DEBUG) console.log(myArgs[0], " - generate a user token");
-    // tokenApp();
+    tokenApp();
     break;
   case "--help":
   case "--h":
