@@ -51,6 +51,22 @@ function setConfig() {
   });
 }
 
+function viewConfig() {
+  fs.readFile('json/config.json', 'utf8', (err, data) => {
+      if (err) {
+          console.error('Error reading configuration file:', err);
+          return;
+      }
+      try {
+        const config = JSON.parse(data);
+        console.log('Current Configuration:');
+        console.log(config);
+      } catch (error) {
+        console.error('Error parsing configuration data:', error);
+      }
+  });
+}
+
 function configApp() {
   if (DEBUG) console.log("configApp()");
 
@@ -66,6 +82,10 @@ function configApp() {
     case "--set":
       if (DEBUG) console.log("--set");
       setConfig();
+      break;
+    case "--view":
+      if (DEBUG) console.log("--view");
+      viewConfig();
       break;
     case "--help":
     case "--h":

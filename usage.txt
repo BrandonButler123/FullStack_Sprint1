@@ -14,6 +14,7 @@ myapp config --help                      displays help for the config command
 myapp config --show                      display a list of the current config settings 
 myapp config --reset                     resets the config file with the default settings 
 myapp config --set <option> <value>      sets a specific config setting
+myapp config --view                      views current config file
 
 myapp token --help                       displays help for the token command 
 myapp token --count                      displays a count of the tokens created 
