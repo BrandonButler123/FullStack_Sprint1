@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Token Form</title>
+  </head>
+  <body>
+    <h1>New Token Form</h1>
+    <form action="/generate-token" method="post">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required />
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required />
+      <label for="phone">Phone:</label>
+      <input type="tel" id="phone" name="phone" required />
+      <button type="submit">Generate Token</button>
+    </form>
+  </body>
+</html>

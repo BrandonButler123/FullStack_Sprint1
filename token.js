@@ -1,7 +1,6 @@
 // Node.js common core global modules
 const fs = require("fs");
 const path = require("path");
-
 const crc32 = require("crc/crc32");
 const { format } = require("date-fns");
 
@@ -61,7 +60,7 @@ function addDays(date, days) {
   return result;
 }
 
-function tokenApp() {
+function tokenApp(newToken) {
   if (DEBUG) console.log("tokenApp()");
 
   switch (myArgs[1]) {
@@ -93,4 +92,5 @@ function tokenApp() {
 
 module.exports = {
   tokenApp,
+  newToken,
 };
