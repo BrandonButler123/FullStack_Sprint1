@@ -1,4 +1,4 @@
-global.DEBUG = true;
+global.DEBUG = false;
 
 const fs = require("fs");
 
