@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const fsPromises = require("fs").promises;
+// const fsPromises = require("fs").promises;
 const { folders, configjson, tokenjson } = require("./templates");
 
 function createFolders() {
