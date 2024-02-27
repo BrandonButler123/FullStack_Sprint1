@@ -17,7 +17,12 @@ app.set("views", __dirname + "/views");
 function startServer(port = 3010) {
   // Additional routes
   app.get("/newToken", (req, res) => {
-    myEmitter.emit("event", req.url, "INFO", "newToken route accessed");
+    myEmitter.emit(
+      "event",
+      `${req.url}        `,
+      "INFO",
+      "newToken view accessed"
+    );
     res.render("newToken");
   });
 
@@ -30,7 +35,12 @@ function startServer(port = 3010) {
     // Save newToken to tokens.json
     tokenApp(generatedToken);
 
-    myEmitter.emit("event", req.url, "INFO", `Token generated for ${username}`);
+    myEmitter.emit(
+      "event",
+      `${req.url}    `,
+      "INFO",
+      `Token generated for ${username}`
+    );
     res.send(`Token generated for ${username}: ${generatedToken}`);
   });
 
