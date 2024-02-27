@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 
+const myEmitter = require("./logEvents.js");
+
 global.DEBUG = false;
 
 const { tokenApp, newToken } = require("./token.js");
@@ -15,6 +17,7 @@ app.set("views", __dirname + "/views");
 function startServer(port = 3010) {
   // Additional routes
   app.get("/newToken", (req, res) => {
+    myEmitter.emit("event", req.url, "INFO", "newToken route accessed");
     res.render("newToken");
   });
 
@@ -27,6 +30,7 @@ function startServer(port = 3010) {
     // Save newToken to tokens.json
     tokenApp(generatedToken);
 
+    myEmitter.emit("event", req.url, "INFO", `Token generated for ${username}`);
     res.send(`Token generated for ${username}: ${generatedToken}`);
   });
 
