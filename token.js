@@ -48,6 +48,7 @@ function searchUser(query) {
 // Function to update user record with email and/or phone number
 function updateUser(username, email, phone) {
   // Read the tokens from the JSON file
+
   fs.readFile(
     path.join(__dirname, "json/tokens.json"),
     "utf-8",
@@ -58,7 +59,9 @@ function updateUser(username, email, phone) {
       let tokens = JSON.parse(data);
 
       // Find the user record by username
-      let user = tokens.find((token) => token.username === username);
+      let user = tokens.find(
+        (token) => token.username.toLowerCase() === username.toLowerCase()
+      );
 
       // If user exists, update email and/or phone number
       if (user) {
