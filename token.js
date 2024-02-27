@@ -20,52 +20,65 @@ function tokenList() {
 
 // Search user by username email or phone number
 function searchUser(query) {
-  fs.readFile(path.join(__dirname, "json/tokens.json"), "utf-8", (error, data) => {
-    if (error) throw error;
-    let tokens = JSON.parse(data);
-    let results = tokens.filter(
-      (obj) =>
-        obj.username.includes(query) ||
-        obj.email.includes(query) ||
-        obj.phone.includes(query)
-    );
-    if (results.length > 0) {
-      console.log("Search Results:");
-      results.forEach((obj) => {
-        console.log(` * ${obj.username}: ${obj.token}`);
-      });
-    } else {
-      console.log("No matching user records found.");
+  fs.readFile(
+    path.join(__dirname, "json/tokens.json"),
+    "utf-8",
+    (error, data) => {
+      if (error) throw error;
+      let tokens = JSON.parse(data);
+      let lowercasedQuery = query.toLowerCase();
+      let results = tokens.filter(
+        (obj) =>
+          obj.username.toLowerCase().includes(lowercasedQuery) ||
+          obj.email.toLowerCase().includes(lowercasedQuery) ||
+          obj.phone.toLowerCase().includes(lowercasedQuery)
+      );
+      if (results.length > 0) {
+        console.log("Search Results:");
+        results.forEach((obj) => {
+          console.log(` * ${obj.username}: ${obj.token}`);
+        });
+      } else {
+        console.log("No matching user records found.");
+      }
     }
-  });
+  );
 }
 
 // Function to update user record with email and/or phone number
 function updateUser(username, email, phone) {
   // Read the tokens from the JSON file
-  fs.readFile(path.join(__dirname, "json/tokens.json"), "utf-8", (error, data) => {
-    if (error) throw error;
+  fs.readFile(
+    path.join(__dirname, "json/tokens.json"),
+    "utf-8",
+    (error, data) => {
+      if (error) throw error;
 
-    // Parse the JSON data
-    let tokens = JSON.parse(data);
+      // Parse the JSON data
+      let tokens = JSON.parse(data);
 
-    // Find the user record by username
-    let user = tokens.find((token) => token.username === username);
+      // Find the user record by username
+      let user = tokens.find((token) => token.username === username);
 
-    // If user exists, update email and/or phone number
-    if (user) {
-      if (email) user.email = email;
-      if (phone) user.phone = phone;
+      // If user exists, update email and/or phone number
+      if (user) {
+        if (email) user.email = email;
+        if (phone) user.phone = phone;
 
-      // Write the updated tokens back to the JSON file
-      fs.writeFile(path.join(__dirname, "json/tokens.json"), JSON.stringify(tokens, null, 2), (err) => {
-        if (err) throw err;
-        console.log("User record updated successfully.");
-      });
-    } else {
-      console.log("User not found.");
+        // Write the updated tokens back to the JSON file
+        fs.writeFile(
+          path.join(__dirname, "json/tokens.json"),
+          JSON.stringify(tokens, null, 2),
+          (err) => {
+            if (err) throw err;
+            console.log("User record updated successfully.");
+          }
+        );
+      } else {
+        console.log("User not found.");
+      }
     }
-  });
+  );
 }
 
 function newToken(username) {
@@ -118,10 +131,12 @@ function tokenApp(newToken) {
       if (DEBUG) console.log("--count");
       //     tokenCount();
       break;
-     // Add a new CLI command to update user records
+    // Add a new CLI command to update user records
     case "--update":
       if (myArgs.length < 5) {
-        console.log("Invalid syntax. Use: node myapp token --update [username] [email] [phone]");
+        console.log(
+          "Invalid syntax. Use: node myapp token --update [username] [email] [phone]"
+        );
       } else {
         updateUser(myArgs[2], myArgs[3], myArgs[4]);
       }
