@@ -13,7 +13,7 @@ const myEmitter = new EventEmitter();
 
 myEmitter.on("event", async (event, level, message) => {
   const dateTime = `${format(new Date(), "yyyyMMdd\tHH:mm:ss")}`;
-  const logItem = `${dateTime}\t${level}\t\t${event}\t\t${message}\t\t${uuid()}`;
+  const logItem = `${dateTime}\t${level}\t${event}\t${message}\t    ${uuid()}`;
   try {
     // Include year when managing log folders
     const currFolder = "logs/" + getYear(new Date());

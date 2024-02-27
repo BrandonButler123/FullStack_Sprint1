@@ -50,17 +50,17 @@ switch (myArgs[0]) {
   case "server":
   case "s":
     if (DEBUG) console.log(myArgs[0], " - start the server");
-    myEmitter.emit("event", "server accessed", "INFO", "starting the server");
+    myEmitter.emit(
+      "event",
+      "server accessed    ",
+      "INFO",
+      "starting the server"
+    );
     startServer();
     break;
   case "help":
   case "h":
-    myEmitter.emit(
-      "event",
-      "help accessed    ",
-      "INFO",
-      "accessing the help file"
-    );
+    myEmitter.emit("event", "help accessed", "INFO", "accessing the help file");
     break;
   default:
     fs.readFile(__dirname + "/usage.txt", (error, data) => {

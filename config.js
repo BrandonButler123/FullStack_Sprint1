@@ -17,7 +17,7 @@ function resetConfig() {
   // if(DEBUG) console.log(__dirname + './json/config.json');
   // if(DEBUG) console.log(configdata);
   fs.writeFile(__dirname + "/json/config.json", configdata, (error) => {
-    if (error) throw error; // issue #7 also applies here
+    if (error) throw error;
     if (DEBUG) console.log("Config file reset to original state");
   });
 }
@@ -52,18 +52,18 @@ function setConfig() {
 }
 
 function viewConfig() {
-  fs.readFile('json/config.json', 'utf8', (err, data) => {
-      if (err) {
-          console.error('Error reading configuration file:', err);
-          return;
-      }
-      try {
-        const config = JSON.parse(data);
-        console.log('Current Configuration:');
-        console.log(config);
-      } catch (error) {
-        console.error('Error parsing configuration data:', error);
-      }
+  fs.readFile("json/config.json", "utf8", (err, data) => {
+    if (err) {
+      console.error("Error reading configuration file:", err);
+      return;
+    }
+    try {
+      const config = JSON.parse(data);
+      console.log("Current Configuration:");
+      console.log(config);
+    } catch (error) {
+      console.error("Error parsing configuration data:", error);
+    }
   });
 }
 
