@@ -1,5 +1,6 @@
 const fs = require("fs");
 const myArgs = process.argv.slice(2);
+const myEmitter = require("./logEvents.js");
 
 const { configjson } = require("./templates");
 
@@ -74,25 +75,62 @@ function configApp() {
     case "--show":
       if (DEBUG) console.log("--show");
       displayConfig();
+      myEmitter.emit(
+        "event",
+        "congig.show accessed",
+        "INFO",
+        "displaying the current configuration"
+      );
       break;
     case "--reset":
       if (DEBUG) console.log("--reset");
       resetConfig();
+      myEmitter.emit(
+        "event",
+        "congig.reset accessed",
+        "INFO",
+        "resetting the current configuration"
+      );
       break;
     case "--set":
       if (DEBUG) console.log("--set");
       setConfig();
+      myEmitter.emit(
+        "event",
+        "config.set accessed",
+        "INFO",
+        "setting the current configuration"
+      );
       break;
     case "--view":
       if (DEBUG) console.log("--view");
       viewConfig();
+      myEmitter.emit(
+        "event",
+        "congif.view accessed",
+        "INFO",
+        "displaying the current configuration"
+      );
       break;
     case "--help":
     case "--h":
+      myEmitter.emit(
+        "event",
+        "congif.help accessed",
+        "INFO",
+        "displaying the help file for configuration options"
+      );
+      break;
     default:
       fs.readFile(__dirname + "/usage.txt", (error, data) => {
         if (error) throw error;
         console.log(data.toString());
+        myEmitter.emit(
+          "event",
+          "congif.default accessed     ",
+          "INFO",
+          "displaying the help file for configuration options"
+        );
       });
   }
 }

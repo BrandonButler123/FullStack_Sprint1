@@ -19,7 +19,7 @@ function startServer(port = 3010) {
   app.get("/newToken", (req, res) => {
     myEmitter.emit(
       "event",
-      `${req.url}        `,
+      `${req.url}                    `,
       "INFO",
       "newToken view accessed"
     );
@@ -37,7 +37,7 @@ function startServer(port = 3010) {
 
     myEmitter.emit(
       "event",
-      `${req.url}    `,
+      `${req.url}                `,
       "INFO",
       `Token generated for ${username}`
     );

@@ -19,7 +19,7 @@ switch (myArgs[0]) {
     if (DEBUG) console.log(myArgs[0], " - initialize the app.");
     myEmitter.emit(
       "event",
-      "init accessed    ",
+      "init accessed                ",
       "INFO",
       "initializing the app"
     );
@@ -30,7 +30,7 @@ switch (myArgs[0]) {
     if (DEBUG) console.log(myArgs[0], " - display the configuration file");
     myEmitter.emit(
       "event",
-      "config accessed    ",
+      "config accessed                ",
       "INFO",
       "configuring the app"
     );
@@ -41,7 +41,7 @@ switch (myArgs[0]) {
     if (DEBUG) console.log(myArgs[0], " - generate a user token");
     myEmitter.emit(
       "event",
-      "token accessed    ",
+      "token accessed                ",
       "INFO",
       "accessing the token route"
     );
@@ -52,7 +52,7 @@ switch (myArgs[0]) {
     if (DEBUG) console.log(myArgs[0], " - start the server");
     myEmitter.emit(
       "event",
-      "server accessed    ",
+      "server accessed                ",
       "INFO",
       "starting the server"
     );
@@ -60,14 +60,19 @@ switch (myArgs[0]) {
     break;
   case "help":
   case "h":
-    myEmitter.emit("event", "help accessed", "INFO", "accessing the help file");
+    myEmitter.emit(
+      "event",
+      "help accessed            ",
+      "INFO",
+      "accessing the help file"
+    );
     break;
   default:
     fs.readFile(__dirname + "/usage.txt", (error, data) => {
       if (error) throw error;
       myEmitter.emit(
         "event",
-        "default accessed",
+        "default accessed            ",
         "INFO",
         "accessing the help file"
       );

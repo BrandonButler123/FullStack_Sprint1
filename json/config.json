@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "description": "The Command Line Interface (CLI) for the MyApp.",
   "main": "myapp.js",
-  "superuser": "thor",
-  "database": "marvel"
+  "superuser": "batman",
+  "database": "exampledb"
 }
