@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const crc32 = require("crc/crc32");
 const { format } = require("date-fns");
-
+const myEmitter = require("./logEvents.js");
 const myArgs = process.argv.slice(2);
 
 function tokenList() {
@@ -135,13 +135,19 @@ function addDays(date, days) {
   return result;
 }
 
-function tokenApp(newToken) {
+function tokenApp() {
   if (DEBUG) console.log("tokenApp()");
 
   switch (myArgs[1]) {
     case "--count":
       if (DEBUG) console.log("--count");
       countTokens();
+      myEmitter.emit(
+        "event",
+        "token.count accessed         ",
+        "INFO",
+        "displaying the total number of tokens"
+      );
       break;
     case "--update":
       if (myArgs.length < 5) {
@@ -150,6 +156,12 @@ function tokenApp(newToken) {
         );
       } else {
         updateUser(myArgs[2], myArgs[3], myArgs[4]);
+        myEmitter.emit(
+          "event",
+          "token.update accessed         ",
+          "INFO",
+          "updating user record with email and/or phone number"
+        );
       }
       break;
     case "--search":
@@ -157,11 +169,23 @@ function tokenApp(newToken) {
         console.log("Invalid syntax. Usage: node myapp token --search [query]");
       } else {
         searchUser(myArgs[2]);
+        myEmitter.emit(
+          "event",
+          "token.search accessed         ",
+          "INFO",
+          "searching for user by username, email, or phone number"
+        );
       }
       break;
     case "--list":
       if (DEBUG) console.log("--list");
       tokenList();
+      myEmitter.emit(
+        "event",
+        "token.list accessed             ",
+        "INFO",
+        "displaying the list of tokens"
+      );
       break;
     case "--new":
       if (myArgs.length < 3) {
@@ -169,6 +193,12 @@ function tokenApp(newToken) {
       } else {
         if (DEBUG) console.log("--new");
         newToken(myArgs[2]);
+        myEmitter.emit(
+          "event",
+          "token.new accessed         ",
+          "INFO",
+          "generating a new token for a user"
+        );
       }
       break;
     case "--help":
@@ -177,6 +207,12 @@ function tokenApp(newToken) {
         if (error) throw error;
         console.log(data.toString());
       });
+      myEmitter.emit(
+        "event",
+        "token.help accessed         ",
+        "INFO",
+        "displaying the help file for token options"
+      );
       break;
     default:
   }
@@ -184,5 +220,4 @@ function tokenApp(newToken) {
 
 module.exports = {
   tokenApp,
-  newToken,
 };
