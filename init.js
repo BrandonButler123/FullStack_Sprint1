@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
-// const fsPromises = require("fs").promises;
 const { folders, configjson, tokenjson } = require("./templates");
+const myEmitter = require("./logEvents.js");
 
 function createFolders() {
   if (DEBUG) console.log("init.createFolders()");
@@ -68,21 +68,52 @@ function initializeApp() {
       if (DEBUG) console.log("--all createFolders() & createFiles()");
       createFolders();
       createFiles();
+      myEmitter.emit(
+        "event",
+        "init.all accessed             ",
+        "INFO",
+        "creating the required folders and files"
+      );
       break;
     case "--cat":
       if (DEBUG) console.log("--cat createFiles()");
       createFiles();
+      myEmitter.emit(
+        "event",
+        "init.cat accessed             ",
+        "INFO",
+        "creating the required files"
+      );
       break;
     case "--mk":
       if (DEBUG) console.log("--mk createFolders()");
       createFolders();
+      myEmitter.emit(
+        "event",
+        "init.mk accessed             ",
+        "INFO",
+        "creating the required folder"
+      );
       break;
     case "--help":
     case "--h":
+      myEmitter.emit(
+        "event",
+        "init.help accessed             ",
+        "INFO",
+        "displaying the help file for init options"
+      );
+      break;
     default:
       fs.readFile(__dirname + "/usage.txt", (error, data) => {
         if (error) throw error;
         console.log(data.toString());
+        myEmitter.emit(
+          "event",
+          "init.default accessed         ",
+          "INFO",
+          "displaying the help file"
+        );
       });
   }
 }
