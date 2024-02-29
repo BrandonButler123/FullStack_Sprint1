@@ -20,5 +20,4 @@ myapp token --help                                displays help for the token co
 myapp token --count                               displays a count of the tokens created 
 myapp token --new <username>                      generates a token for the username, saves tokens to the json file 
 myapp token --search <username> <email> <phone>   fetches a token for a given username by searching username, email or phone
-
-myapp token --update [username] [email] [phone]   updates the json entry with a new name, email or phone number 
+myapp token --update <username> <email> <phone>   updates the json entry with a new name, email or phone number 

@@ -18,6 +18,15 @@ function tokenList() {
   });
 }
 
+function countTokens() {
+  if (DEBUG) console.log("token.countTokens()");
+  fs.readFile(__dirname + "/json/tokens.json", "utf-8", (error, data) => {
+    if (error) throw error;
+    let tokens = JSON.parse(data);
+    console.log("Total tokens:", tokens.length);
+  });
+}
+
 // Search user by username email or phone number
 function searchUser(query) {
   fs.readFile(
@@ -132,9 +141,8 @@ function tokenApp(newToken) {
   switch (myArgs[1]) {
     case "--count":
       if (DEBUG) console.log("--count");
-      //     tokenCount();
+      countTokens();
       break;
-    // Add a new CLI command to update user records
     case "--update":
       if (myArgs.length < 5) {
         console.log(
@@ -144,7 +152,6 @@ function tokenApp(newToken) {
         updateUser(myArgs[2], myArgs[3], myArgs[4]);
       }
       break;
-    // Add new CLI command to search
     case "--search":
       if (myArgs.length < 3) {
         console.log("Invalid syntax. Usage: node myapp token --search [query]");
